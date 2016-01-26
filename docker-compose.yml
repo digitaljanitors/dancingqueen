@@ -1,0 +1,15 @@
+go: &go
+  image: golang
+  working_dir: /go/src/github.com/digitaljanitors/dancingqueen
+  volumes:
+    - $GOPATH:/go
+go-test:
+  <<: *go
+  command: sh -c 'go get -t -v ./... && go test -v ./...'
+  links:
+    - redis
+go-build:
+  <<: *go
+  command: sh -c 'go get -v && go build -ldflags ''-s'' -o dancingqueen'
+redis:
+  image: redis:3.0-alpine
