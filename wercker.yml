@@ -23,3 +23,7 @@ build:
         name: go test
         code: go test -v ./...
 
+    # Coveralls.io
+    - zhevron/goveralls:
+        token: $COVERALLS_TOKEN
+
